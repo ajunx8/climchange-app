@@ -1,17 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
+// import { Link } from "react-router-dom";
+import "../styles/Home.css";
 
-class Home extends Component {
-
-    render() {
-        return (
-            <div>
-                <Navbar />
-                <h1>Climate Change Blog</h1>
-                <Blog />
-                <nav className="location-api">
-                    <Location />
-                </nav>
-            </div>
-        )
-    }
+function Home() {
+  return (
+    <div className="home" style={{ backgroundImage: "url(/climatechange.jpeg)" }}>
+      <div className="headerContainer">
+        <h1> CLIMATE CHANGE! </h1>
+        <p> CLIMATE CHANGE OMG </p>
+   
+      </div>
+    </div>
+  );
 }
+
+export default Home;

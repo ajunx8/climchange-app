@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
 import Auth from './Auth'
 import Account from './Account'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Footer from './components/Footer';
 
 export default function App() {
   const [session, setSession] = useState(null)
