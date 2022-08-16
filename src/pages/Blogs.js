@@ -1,7 +1,7 @@
 import React from "react";
 
 const Blogs = () => {
-    const [content,setContent] = useState('');
+    const [content, setContent] = useState('');
 
     const _handleSubmit = (e) => {
         e.preventDefault();
