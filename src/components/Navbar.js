@@ -5,7 +5,7 @@ import '../styles/Navbar.css';
 
 function Navbar () {
     return (
-        <div className="navbar">
+        <nav className="navbar">
             <div className="leftSide">
                 <img src={ Logo } />       
             </div>
@@ -15,7 +15,7 @@ function Navbar () {
                 <Link to="/profile"> Profile </Link>
                 
             </div>
-        </div>
+        </nav>
     )
 }
 

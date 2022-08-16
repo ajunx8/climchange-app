@@ -6,9 +6,10 @@ import Auth from './Auth'
 import News from './components/News';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from './components/Footer';
 import Profile from './pages/Profile';
+import './styles/Navbar.css';
 
 function App() {
   const [session, setSession] = useState(null)
@@ -25,20 +26,12 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/profile">
-              { !session ? <Auth /> : <Profile /> }
-            </Route>
-          <Route path="/news">
-            <News />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/profile" element={ !session ? <Auth /> : <Profile /> } />
+          <Route path="/news" element={<News />}/>
+          <Route path="/" element={<Home />}/>
+        </Routes>
       </Router>
-
       <Footer />
     </div>
   );
