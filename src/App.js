@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
 import Auth from './Auth'
 import Account from './Account'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Footer from './components/Footer';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import News from './components/News';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+
 
 export default function App() {
   const [session, setSession] = useState(null)
@@ -18,11 +21,36 @@ export default function App() {
   }, [])
 
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/profile">
+          { !session ? <Auth /> : <Profile /> }
+        </Route>
+        <Route path="/news">
+          <News />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </BrowserRouter> 
   )
 }
+
+
+  // {/* {!session ? <Auth /> : <Account key={session.user.id} session={session} />} */}
+  //     <BrowserRouter>
+  //   <div className="container" style={{ padding: '50px 0 100px 0' }}>
+  //       <Switch>
+  //         <Route index element={<App />}/>
+  //         <Route path="/profile" >
+  //           {!session ? <Auth /> : <News />}
+  //         </Route>
+  //       </Switch>
+  //   </div>
+  //     </BrowserRouter>
+  // )
+
 
 
 //////////////////////////////////////////////
