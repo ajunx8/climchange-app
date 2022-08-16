@@ -1,17 +1,18 @@
 import React, { Component } from "react";
+import Header from '../components/Header';
+import Blogs from './Blogs';
 
 class Home extends Component {
 
     render() {
         return (
             <div>
-                <Navbar />
+                <Header />
                 <h1>Climate Change Blog</h1>
-                <Blog />
-                <nav className="location-api">
-                    <Location />
-                </nav>
+                <Blogs />
             </div>
-        )
-    }
+        );
+    };
 }
+
+export default Home;
