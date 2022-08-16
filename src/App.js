@@ -1,5 +1,7 @@
 import logo from './logo.svg';
-import './App.css';
+import News from './News';
+import { Doughnut } from 'react-chartjs-2';
+// import './App.css';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <News />
     </div>
   );
 }
