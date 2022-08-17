@@ -1,9 +1,10 @@
 
-import React, { Component } from "react";
+// import React, { Component } from "react";
+import { Component } from "react";
 import axios from 'axios';
 import _ from 'underscore';
-import { Doughnut } from 'react-chartjs-2';
-import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
+// import { Doughnut } from 'react-chartjs-2';
+// import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
 // import '.index.css';
 
 class News extends Component {
