@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import '../styles/Posts.css';
 
 const Posts = ( {session} ) => {
     const [posts, setPosts] = useState([]);
@@ -26,7 +27,7 @@ const Posts = ( {session} ) => {
             .select()
             .eq('user_id', session.user.id)
         setPosts(data) // gets all the posts matching the user_id with the session.user.id and sets the 'posts' as 'data'
-        console.log("data: ", data)  
+        console.log("data: ", data) 
     }
 
     async function createPost(e) {
@@ -42,27 +43,46 @@ const Posts = ( {session} ) => {
     }
 
     return(
-        <div>
-            <h3>Blog Here</h3>
+        <div className="posts-container" >
+            <h3>My Journal on Climate Change</h3>
             <form className="post-form" onSubmit={ createPost }>
                 <input 
+                    id="title"
                     type="text" 
                     required 
-                    placeholder="title" 
+                    placeholder="Title of Entry" 
                     value={title}
                     onChange={e => setPost({ ...post, title: e.target.value })} 
                 />
-                <input 
-                    type="textarea" 
+                <textarea  
                     required 
-                    placeholder="Content" 
+                    placeholder="💭 Today's thoughts on the state of our Climate 💭" 
                     value={content}
                     onChange={e => setPost({ ...post, content: e.target.value })} 
                 />
-                <input type="submit" value="Create Post" />
+                <input id="create-post" type="submit" value="Create Post" />
             </form>
+
+            <PostsList posts={ posts } />
         </div>
     );
 }
 
+
+const PostsList = (props) => {
+    return (
+        <div className="all-posts" >
+            <p>You have {props.posts.length} Posts</p>
+            { props.posts.map(p => (
+                <div className="each-post" key={p.id}>
+                    <h3>{p.title}</h3>
+                    <p>{p.content}</p>
+                </div>
+                ))
+            }
+        </div>
+    )
+}
+
 export default Posts;
+

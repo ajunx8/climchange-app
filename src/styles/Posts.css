@@ -1,0 +1,45 @@
+.posts-container {
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.post-form {
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+}
+
+#title {
+    display: block;
+    width: 100%;
+    font-weight: 700;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    resize: vertical;
+    height: 20em;
+}
+
+#create-post {
+    width:min-content;
+}
+
+.content {
+    display: block;
+}
+
+.all-post {
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.each-post {
+    border: 3px black;
+    border-style:dashed ;
+}
