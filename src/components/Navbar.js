@@ -10,10 +10,10 @@ function Navbar () {
                 <img src={ Logo } alt="Logo" />       
             </div>
             <div className="rightSide">
-                <Link to="/"> Home </Link>
-                <Link to="/News"> News </Link>
-                <Link to="/profile"> Profile </Link>
-                
+                <Link to="/">Home</Link>
+                <Link to="/News">News</Link>
+                <Link to="/posts">Post</Link>
+                <Link to="/profile">Profile</Link>
             </div>
         </nav>
     )
