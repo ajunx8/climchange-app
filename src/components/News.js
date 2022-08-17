@@ -6,6 +6,15 @@ import _ from 'underscore';
 // import { Doughnut } from 'react-chartjs-2';
 // import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
 // import '.index.css';
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend
+} from "recharts";
 
 class News extends Component {
     constructor() {
@@ -19,101 +28,109 @@ class News extends Component {
             news: null,
             blogs: null
         }
-        this.fetchTemp=this.fetchTemp.bind(this)
-        this.fetchCarbonDioxide=this.fetchCarbonDioxide.bind(this)
-        this.fetchMethane=this.fetchMethane.bind(this)
-        this.fetchNitrousOxide=this.fetchNitrousOxide.bind(this)
-        this.fetchPolarIce=this.fetchPolarIce.bind(this)
-        this.fetchNews=this.fetchNews.bind(this)
-        this.fetchBlogs=this.fetchBlogs.bind(this)
+        this.fetchTemp = this.fetchTemp.bind(this)
+        this.fetchCarbonDioxide = this.fetchCarbonDioxide.bind(this)
+        this.fetchMethane = this.fetchMethane.bind(this)
+        this.fetchNitrousOxide = this.fetchNitrousOxide.bind(this)
+        this.fetchPolarIce = this.fetchPolarIce.bind(this)
+        this.fetchNews = this.fetchNews.bind(this)
+        this.fetchBlogs = this.fetchBlogs.bind(this)
     }
 
     fetchMethane() {
         axios('https://global-warming.org/api/methane-api').then((response) => {
-            const yearlyAverages=_(response.data.methane.splice(198)).chunk(12).map(avgYear) //chunk groups months data into year's data.
+            const yearlyAverages = _(response.data.methane.splice(198)).chunk(12).map(avgYear) //chunk groups months data into year's data.
             //.map does replaces each month array with the avg for the year.
             this.setState({
                 methane: yearlyAverages
             });
         })
-        function avgYear(year){
+        function avgYear(year) {
             let sum = 0
-            for (let i=0; i < year.length; i++) {
+            for (let i = 0; i < year.length; i++) {
                 const month = year[i]
                 sum += Number(month.average) // converts month.average from string to a number.
             }
-            return sum/12
+            return sum / 12
         }
     }
-    
+
     fetchTemp() {
         axios('https://global-warming.org/api/temperature-api').then((response) => {
             // console.log(response.data.result.splice(1440));
-            const yearlyAverageTemp=_(response.data.result.splice(1440)).chunk(12).map(avgTemp)
+            const yearlyAverageTemp = _(response.data.result.splice(1440)).chunk(12).map(avgTemp)
             this.setState({
                 temp: yearlyAverageTemp
             });
         })
-        function avgTemp(year){
+        function avgTemp(year) {
             let sum = 0
-            for (let i=0; i < year.length; i++) {
+            for (let i = 0; i < year.length; i++) {
                 const month = year[i]
                 sum += (Number(month.station))
             }
-            return (sum/12).toFixed(4) //method to fix decimal points after a number.
-            
-        }   
+            return (sum / 12).toFixed(4) //method to fix decimal points after a number.
+
+        }
     }
 
     fetchNitrousOxide() {
         axios('https://global-warming.org/api/nitrous-oxide-api').then((response) => {
             console.log(_(response.data.nitrous).chunk(12))
-            const yearlyincreasePpb=_(response.data.nitrous).chunk(12).map(avgIncrease)
+            const yearlyincreasePpb = _(response.data.nitrous).chunk(12).map(avgIncrease)
             this.setState({
                 nitrousOxide: yearlyincreasePpb
             });
         })
         function avgIncrease(year) {
             let sum = 0
-            for (let i=0; i < year.length; i++) {
+            for (let i = 0; i < year.length; i++) {
                 const month = year[i]
-                sum +=(Number(month.average))
+                sum += (Number(month.average))
             }
-            return (sum/12).toFixed(2)
+            return (sum / 12).toFixed(2)
         }
     }
 
     fetchPolarIce() {
         axios('https://global-warming.org/api/arctic-api').then((response) => {
             console.log(response)
-            const polarIceMelts=_(response.data.arcticData).pluck('area')
+            const polarIceMelts = _(response.data.arcticData).pluck('area')
             this.setState({
                 polarIce: polarIceMelts
             });
         })
-        
+
     }
-        
+
     fetchCarbonDioxide() {
         axios('https://global-warming.org/api/co2-api').then((response) => {
-            // console.log(response)
-            const yearlyCo2Emmissions=response.data.co2;
-            const data = { };
-            yearlyCo2Emmissions.forEach(function(day){
-                const key= day.year+'-'+day.month
-                if (! data[key])data[key]={total:0, days:0}
-                data[key].total+=Number(day.cycle);
+            console.log(response)
+            const yearlyCo2Emmissions = response.data.co2;
+            const data = {};
+            yearlyCo2Emmissions.forEach(function (day) {
+                const key = day.year + '-' + day.month
+                if (!data[key]) data[key] = { total: 0, days: 0 }
+                data[key].total += Number(day.cycle);
                 data[key].days++;
-                data[key].average=(data[key].total / data[key].days).toFixed(3)
+                data[key].average = (data[key].total / data[key].days).toFixed(3)
             })
             console.log(data)
+            let formatData = [];
+            for (const key in data) {
+                const entry = {};
+                entry.name = key
+                entry.average = data[key].average
+                formatData.push(entry)
+            }
+            console.log(formatData);
+
             this.setState({
-                
-                carbonDioxide: data   
+                carbonDioxide: formatData
             });
         });
     }
-   
+
     fetchNews() {
         axios('<<<news API goes in here>>>').then((response) => {
             console.log(response)
@@ -130,8 +147,8 @@ class News extends Component {
                 blogs: response.data
             });
         })
-    }  
-    
+    }
+
     componentDidMount() {
         this.fetchTemp();
         this.fetchCarbonDioxide();
@@ -141,13 +158,51 @@ class News extends Component {
         // this.fetchNews();
         // this.fetchBlogs();
     }
-   
+
     render() {
-        return (this.information )
+        const { temp, carbonDioxide, methane, nitrousOxide, polarIce, news, blogs } = this.state
+        return (
+            <div>
+                <LineChart width={730} height={250} data={carbonDioxide}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="average" stroke="#8884d8" />
+                </LineChart>
+            </div>
+        )
     }
-    
+
 }
 
 
 
+
+
 export default News;
+
+
+
+
+// <LineChart
+//     width={900}
+//     height={300}
+//     data={this.state.carbonDioxide}
+//     margin={{
+//         top: 5,
+//         right: 30,
+//         left: 20,
+//         bottom: 5
+//     }}
+// >
+//     <Line
+//         type="monotone"
+//         dataKey="CO2"
+//         stroke="#8884d8"
+//         activeDot={{ r: 8 }}
+//     />
+//     <CartesianGrid strokeDasharray="3 3" />
+// </LineChart>

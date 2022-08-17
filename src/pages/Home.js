@@ -15,7 +15,6 @@ function Home() {
       <div className="loginmessage">
         {/* {if (!session) `<h3>You must be logged in to post</h3>`} */}
       </div>
-      <Posts />
     </div>
   );
 }

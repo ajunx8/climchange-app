@@ -10,7 +10,6 @@ import Posts from './pages/Posts';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from './components/Footer';
 import Account from './Account';
-// import Profile from './pages/Profile';
 import './styles/Navbar.css';
 
 
