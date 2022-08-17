@@ -35,11 +35,11 @@ textarea {
 .all-post {
     max-width: 900px;
     margin: 0 auto;
-    box-sizing: border-box;
     text-align: left;
 }
 
 .each-post {
-    border: 3px black;
-    border-style:dashed ;
+    padding: 5px;
+    border-style:groove ;
+    margin: 5px;
 }
