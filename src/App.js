@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from './components/Footer';
 import Profile from './pages/Profile';
+import WeatherSearch from './components/WeatherSearch';
 import './styles/Navbar.css';
 
 function App() {
@@ -16,6 +17,11 @@ function App() {
 
   useEffect(() => {
   setSession(supabase.auth.session())
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    console.log("Latitude is :", position.coords.latitude);
+    console.log("Longitude is :", position.coords.longitude);
+  });
 
   supabase.auth.onAuthStateChange((_event, session) => {
     setSession(session)
@@ -32,6 +38,7 @@ function App() {
           <Route path="/" element={<Home />}/>
         </Routes>
       </Router>
+      <WeatherSearch />
       <Footer />
     </div>
   );

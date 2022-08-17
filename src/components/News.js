@@ -143,6 +143,7 @@ class News extends Component {
    
     render() {
         return (this.information )
+        
     }
     
 }
