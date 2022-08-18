@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from 'axios';
 import _ from 'underscore';
+import '../styles/Charts.css';
 import {
     LineChart,
     Line,
@@ -128,7 +129,7 @@ class Charts extends Component {
     render() {
         const { temp, carbonDioxide, methane, nitrousOxide, polarIce } = this.state
         return (
-            <div>
+            <div className="container">
                 <LineChart width={930} height={250} data={temp}
                     margin={{ top: 10, right: 30, left: 20, bottom: 10 }}>
                     <CartesianGrid vertical={false} strokeDasharray="3 3" />
