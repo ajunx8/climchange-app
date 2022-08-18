@@ -13,7 +13,7 @@ const Posts = ( {session} ) => {
             initializePost({session})
             fetchPosts({session})
         }
-    }, [session])
+    }, [])
 
     const initializePost = ({session}) => {
         console.log("setting user: ", session)
