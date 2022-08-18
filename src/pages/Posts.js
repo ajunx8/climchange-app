@@ -12,7 +12,7 @@ const Posts = ({ session }) => {
             initializePost({ session })
             fetchPosts({ session })
         }
-    }, [])
+    }, [session])
 
     const initializePost = ({ session }) => {
         console.log("setting user: ", session)
@@ -83,3 +83,6 @@ const PostsList = (props) => {
 }
 
 export default Posts;
+
+// const [user, setUser] = useState(null)
+// setUser(session.user)
