@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { callAPI } from '../api.js';
 import '../styles/WeatherSearch.css';
+import CoordinatesForm from '../components/CoordinatesForm';
 
 const Api_Key = "25b382e32ccd487eb88549c3ac8a5f7c";
 
@@ -41,19 +42,7 @@ function WeatherSearch() {
 
         Latitude:
         
-        <form>
-
-        <input />
-            
-        Longitude:
-        
-        <input />
-
-        <button type="submit" value="submit">
-            Manual Search.
-        </button>
-
-        </form>
+        <CoordinatesForm />
 
        </div>
     );
