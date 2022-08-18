@@ -1,11 +1,6 @@
-
-// import React, { Component } from "react";
 import { Component } from "react";
 import axios from 'axios';
 import _ from 'underscore';
-// import { Doughnut } from 'react-chartjs-2';
-// import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
-// import '.index.css';
 import {
     LineChart,
     Line,
@@ -115,7 +110,6 @@ class News extends Component {
                 data[key].days++;
                 data[key].average = (data[key].total / data[key].days).toFixed(3)
             })
-            console.log(data)
             let formatData = [];
             for (const key in data) {
                 const entry = {};
@@ -123,8 +117,6 @@ class News extends Component {
                 entry.average = data[key].average
                 formatData.push(entry)
             }
-            console.log(formatData);
-
             this.setState({
                 carbonDioxide: formatData
             });
@@ -163,7 +155,7 @@ class News extends Component {
         const { temp, carbonDioxide, methane, nitrousOxide, polarIce, news, blogs } = this.state
         return (
             <div>
-                <LineChart width={730} height={250} data={carbonDioxide}
+                <LineChart width={930} height={250} data={carbonDioxide}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -178,31 +170,4 @@ class News extends Component {
 
 }
 
-
-
-
-
 export default News;
-
-
-
-
-// <LineChart
-//     width={900}
-//     height={300}
-//     data={this.state.carbonDioxide}
-//     margin={{
-//         top: 5,
-//         right: 30,
-//         left: 20,
-//         bottom: 5
-//     }}
-// >
-//     <Line
-//         type="monotone"
-//         dataKey="CO2"
-//         stroke="#8884d8"
-//         activeDot={{ r: 8 }}
-//     />
-//     <CartesianGrid strokeDasharray="3 3" />
-// </LineChart>

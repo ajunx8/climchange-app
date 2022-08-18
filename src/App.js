@@ -1,4 +1,3 @@
-// import { Doughnut } from 'react-chartjs-2';
 import './App.css'
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
