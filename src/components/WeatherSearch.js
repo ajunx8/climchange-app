@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { callAPI } from '../api.js';
+import React, { useState } from 'react';
 import '../styles/WeatherSearch.css';
 import CoordinatesForm from '../components/CoordinatesForm';
 import axios from 'axios';
