@@ -6,18 +6,18 @@ const Posts = ( {session} ) => {
     const [posts, setPosts] = useState([]);
     const [post, setPost] = useState( {user_id: null, title: "", content: ""} );
     const { title, content } = post
-    const [user, setUser] = useState(null)
+    // const [user, setUser] = useState(null)
 
     useEffect(() => {
         if (session) {
             initializePost({session})
             fetchPosts({session})
         }
-    }, [session])
+    }, [])
 
     const initializePost = ({session}) => {
         console.log("setting user: ", session)
-        setUser(session.user)
+        // setUser(session.user)
         setPost({ ...post, user_id: session.user.id })
     }
 
