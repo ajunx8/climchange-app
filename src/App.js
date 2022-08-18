@@ -1,16 +1,16 @@
-import './App.css'
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { supabase } from './supabaseClient'
-import Auth from './Auth'
-import News from './components/News';
+import Account from './Account';
+import Auth from './Auth';
+
+import Charts from './components/Charts';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Posts from './pages/Posts';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from './components/Footer';
-import Profile from './pages/Profile';
 import WeatherSearch from './components/WeatherSearch';
-import Account from './Account';
+import './App.css'
 import './styles/Navbar.css';
 
 
@@ -36,7 +36,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/profile" element={ !session ? <Auth /> : <Account key={session.user.id} session={session} /> } />
-          <Route path="/news" element={<News />}/>
+          <Route path="/charts" element={<Charts />}/>
           <Route path="/posts" element={ !session ? <Auth /> : <Posts key={session.user.id} session={session} /> }/>
           <Route path="/" element={<Home />}/>
         </Routes>

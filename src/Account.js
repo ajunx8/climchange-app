@@ -16,14 +16,6 @@ const Account = ({ session }) => {
       setLoading(true)
       const user = supabase.auth.user()
 
-      // if (user && user.id) {
-      //   let { data: posts } = await supabase
-      //   .from('posts')
-      //   .select()
-      //   .eq('user_id', user.id)
-      //   console.log(posts);
-      // }
-
       let { data, error, status } = await supabase
         .from('profiles')
         .select(`username, website, avatar_url`)
