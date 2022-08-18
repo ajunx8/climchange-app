@@ -22,13 +22,13 @@ function WeatherSearch() {
         setLongitude(position.coords.longitude);
     });
 
-    useEffect = (() => {
+    const useEffect = (() => {
         fetchData();
         console.log(data);
     }, []);
 
     return (
-       <button onClick={ WeatherSearch }>
+       <button onClick={ fetchData }>
         Search!
        </button>
        
