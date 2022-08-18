@@ -6,8 +6,8 @@ const Api_Key = "25b382e32ccd487eb88549c3ac8a5f7c";
 
 function WeatherSearch() {
 
-    const [latitude, setLatitude] = useState();
-    const [longitude, setLongitude] = useState();
+    const latitude = '-33.87098868056243';
+    const longitude = '151.20477287220643';
     const [data, setData] = useState({});
 
     const fetchData = async () => {
@@ -15,25 +15,48 @@ function WeatherSearch() {
         await setData(APIResult); // makes sure to load the page after the data has been received
     }
 
-    navigator.geolocation.getCurrentPosition(function (position) {
-        console.log("Latitude is: ", position.coords.latitude);
-        console.log("Longitude is: ", position.coords.longitude);
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-    });
 
-    const useEffect = (() => {
+
+    function getWeather () {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            console.log("Latitude is: ", position.coords.latitude);
+            console.log("Longitude is: ", position.coords.longitude);
+            // setLatitude(position.coords.latitude);
+            // setLongitude(position.coords.longitude);
+        });
+
         fetchData();
         console.log(data);
-    }, []);
+    };
 
     return (
-       <button onClick={ fetchData }>
-        Search!
-       </button>
-       
+        <div>
+        
+            <button onClick={ getWeather }>
+                Search Current Location.
+            </button>
+            
+
+       <p>or enter coordinates manually:</p>
+
+        Latitude:
+        
+        <form>
+
+        <input />
+            
+        Longitude:
+        
+        <input />
+
+        <button type="submit" value="submit">
+            Manual Search.
+        </button>
+
+        </form>
+
+       </div>
     );
 }
-
 
 export default WeatherSearch;

@@ -10,11 +10,11 @@ function Footer() {
       <div className="footer">
         <div className="socialMedia">
         </div>
-        <p> &copy; 2022 ClimateChangeNow.com</p>
         <InstagramIcon />
         <FacebookIcon />
         <TwitterIcon />
         <EmailIcon />
+        <p> &copy; 2022 ClimateChangeNow.com</p>
       </div>
     );
   }
