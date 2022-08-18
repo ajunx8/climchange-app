@@ -17,12 +17,11 @@ function WeatherSearch() {
         console.log('lat:', latitude, 'lon:', longitude);
         // let APIResult = await callAPI(latitude, longitude);
         const APIKEY = '25b382e32ccd487eb88549c3ac8a5f7c';
-        const APIResult = await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${ latitude }&lon=${ longitude }&appid=${ APIKEY }`).then((response) => {
+        await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${ latitude }&lon=${ longitude }&appid=${ APIKEY }`).then((response) => {
             console.log(response.data);
             setData(response.data);
         });
     }
-
 
 
     async function getWeatherAtCurrentLocation () {
