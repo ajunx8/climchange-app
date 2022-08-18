@@ -1,36 +1,37 @@
-import { useState } from 'react';
+ import { useState } from 'react';
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
-function CoordinatesForm(props) {
+function CoordinatesForm({ fetchData, setWeatherModalOpen }) {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
-  
+
     const handleSubmit = (event) => {
-      event.preventDefault();
-      props.fetchData(latitude, longitude);
-      alert(`The coordinates you entered were: ${ latitude } ${ longitude }`)
+        event.preventDefault();
+        fetchData(latitude, longitude);
+        setWeatherModalOpen(true);
     }
 
-return (
-    <form onSubmit={handleSubmit}>
-        <label>Enter your coordinates:
-            <input 
-                type="text" 
+    return (
+        <form onSubmit={handleSubmit}>
+            <Typography>Enter your coordinates:</Typography>
+            <TextField
+                type="number"
                 value={latitude}
                 onChange={(e) => setLatitude(e.target.value)}
                 placeholder="Latitude"
             />
-
-            <input 
-                type="text"
+            <TextField
+                type="number"
                 value={longitude}
                 onChange={(e) => setLongitude(e.target.value)}
                 placeholder="Longitude"
             />
-        </label>
-            <input type="submit" />
+            <Button type="submit" variant="contained">Get Weather</Button>
         </form>
-      )
-    }
-    
+    )
+}
+
 
 export default CoordinatesForm;

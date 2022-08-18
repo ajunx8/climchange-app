@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import '../styles/WeatherSearch.css';
 import CoordinatesForm from '../components/CoordinatesForm';
 import axios from 'axios';
-import WeatherDisplay from '../components/WeatherDisplay';
 import WeatherModal from '../components/WeatherDisplay';
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
-const Api_Key = "25b382e32ccd487eb88549c3ac8a5f7c"
 
 function WeatherSearch() {
 
@@ -15,16 +15,12 @@ function WeatherSearch() {
     const [longitude, setLongitude] = useState();
 
     const fetchData = async (latitude, longitude) => {
-        console.log('lat:', latitude, 'lon:', longitude);
-        // let APIResult = await callAPI(latitude, longitude);
         const APIKEY = '25b382e32ccd487eb88549c3ac8a5f7c';
         await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKEY}`).then((response) => {
             console.log(response.data);
             setData(response.data);
         });
     }
-
-
 
     async function getWeatherAtCurrentLocation() {
         await navigator.geolocation.getCurrentPosition(function (position) {
@@ -33,26 +29,14 @@ function WeatherSearch() {
             fetchData(position.coords.latitude, position.coords.longitude);
             setWeatherModalOpen(true);
         });
-
-
     };
 
     return (
         <div>
-
-            <button onClick={getWeatherAtCurrentLocation}>
-                Search Current Location.
-            </button>
-
-
-            <p>or enter coordinates manually:</p>
-
-            Latitude:
-
-            <CoordinatesForm fetchData={fetchData} />
-            <WeatherDisplay weatherData={data} />
+            <Button variant="contained" onClick={getWeatherAtCurrentLocation}>Search Current Location.</Button>
+            <Typography>or enter coordinates manually:</Typography>
+            <CoordinatesForm fetchData={fetchData} setWeatherModalOpen={setWeatherModalOpen} />
             <WeatherModal weatherModalOpen={weatherModalOpen} setWeatherModalOpen={setWeatherModalOpen} data={data} />
-
         </div>
     );
 }

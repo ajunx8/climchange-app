@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
@@ -17,13 +16,10 @@ const style = {
 };
 
 export default function WeatherModal({ weatherModalOpen, setWeatherModalOpen, data }) {
-    const handleOpen = () => setWeatherModalOpen(true);
     const handleClose = () => setWeatherModalOpen(false);
-    console.log(data);
 
     return (
         <div>
-            <Button onClick={ handleOpen }>View Weather</Button>
             {data &&
                 <Modal
                     open={weatherModalOpen}
