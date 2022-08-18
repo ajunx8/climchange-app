@@ -10,9 +10,7 @@ import Typography from '@mui/material/Typography'
 function WeatherSearch() {
 
     const [data, setData] = useState();
-    const [latitude, setLatitude] = useState();
     const [weatherModalOpen, setWeatherModalOpen] = useState(false);
-    const [longitude, setLongitude] = useState();
 
     const fetchData = async (latitude, longitude) => {
         const APIKEY = '25b382e32ccd487eb88549c3ac8a5f7c';
@@ -24,8 +22,6 @@ function WeatherSearch() {
 
     async function getWeatherAtCurrentLocation() {
         await navigator.geolocation.getCurrentPosition(function (position) {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
             fetchData(position.coords.latitude, position.coords.longitude);
             setWeatherModalOpen(true);
         });
