@@ -2,49 +2,59 @@ import React, { useEffect, useState } from 'react';
 import { callAPI } from '../api.js';
 import '../styles/WeatherSearch.css';
 import CoordinatesForm from '../components/CoordinatesForm';
+import axios from 'axios';
+import WeatherDisplay from '../components/WeatherDisplay';
+import WeatherModal from '../components/WeatherDisplay';
 
-const Api_Key = "25b382e32ccd487eb88549c3ac8a5f7c";
+const Api_Key = "25b382e32ccd487eb88549c3ac8a5f7c"
 
 function WeatherSearch() {
 
-    const latitude = '-33.87098868056243';
-    const longitude = '151.20477287220643';
-    const [data, setData] = useState({});
+    const [data, setData] = useState();
+    const [latitude, setLatitude] = useState();
+    const [weatherModalOpen, setWeatherModalOpen] = useState(false);
+    const [longitude, setLongitude] = useState();
 
-    const fetchData = async () => {
-        let APIResult = callAPI(latitude, longitude);
-        await setData(APIResult); // makes sure to load the page after the data has been received
+    const fetchData = async (latitude, longitude) => {
+        console.log('lat:', latitude, 'lon:', longitude);
+        // let APIResult = await callAPI(latitude, longitude);
+        const APIKEY = '25b382e32ccd487eb88549c3ac8a5f7c';
+        await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKEY}`).then((response) => {
+            console.log(response.data);
+            setData(response.data);
+        });
     }
 
 
 
-    function getWeather () {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            console.log("Latitude is: ", position.coords.latitude);
-            console.log("Longitude is: ", position.coords.longitude);
-            // setLatitude(position.coords.latitude);
-            // setLongitude(position.coords.longitude);
+    async function getWeatherAtCurrentLocation() {
+        await navigator.geolocation.getCurrentPosition(function (position) {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+            fetchData(position.coords.latitude, position.coords.longitude);
+            setWeatherModalOpen(true);
         });
 
-        fetchData();
-        console.log(data);
+
     };
 
     return (
         <div>
-        
-            <button onClick={ getWeather }>
+
+            <button onClick={getWeatherAtCurrentLocation}>
                 Search Current Location.
             </button>
-            
 
-       <p>or enter coordinates manually:</p>
 
-        Latitude:
-        
-        <CoordinatesForm />
+            <p>or enter coordinates manually:</p>
 
-       </div>
+            Latitude:
+
+            <CoordinatesForm fetchData={fetchData} />
+            <WeatherDisplay weatherData={data} />
+            <WeatherModal weatherModalOpen={weatherModalOpen} setWeatherModalOpen={setWeatherModalOpen} data={data} />
+
+        </div>
     );
 }
 

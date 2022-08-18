@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-function CoordinatesForm() {
+function CoordinatesForm(props) {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
   
     const handleSubmit = (event) => {
       event.preventDefault();
+      props.fetchData(latitude, longitude);
       alert(`The coordinates you entered were: ${ latitude } ${ longitude }`)
     }
 
