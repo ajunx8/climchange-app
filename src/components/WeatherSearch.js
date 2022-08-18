@@ -28,11 +28,10 @@ function WeatherSearch() {
     }, []);
 
     return (
-        <txt>
        <button onClick={ WeatherSearch }>
         Search!
        </button>
-       </txt>
+       
     );
 }
 
