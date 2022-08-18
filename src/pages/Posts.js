@@ -9,15 +9,15 @@ const Posts = ({ session }) => {
 
     useEffect(() => {
         if (session) {
+            const initializePost = ({ session }) => {
+                console.log("setting user: ", session)
+                setPost({ ...post, user_id: session.user.id })
+            }
             initializePost({ session })
             fetchPosts({ session })
         }
     }, [session])
-
-    const initializePost = ({ session }) => {
-        console.log("setting user: ", session)
-        setPost({ ...post, user_id: session.user.id })
-    }
+    
 
     async function fetchPosts({ session }) {
         const { data } = await supabase
