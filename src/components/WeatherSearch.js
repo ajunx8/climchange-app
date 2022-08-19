@@ -21,7 +21,7 @@ function WeatherSearch() {
     }
 
     async function getWeatherAtCurrentLocation() {
-        await navigator.geolocation.getCurrentPosition(function (position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             fetchData(position.coords.latitude, position.coords.longitude);
             setWeatherModalOpen(true);
         });
