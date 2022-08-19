@@ -16,7 +16,7 @@ const Posts = ({ session }) => {
             initializePost({ session })
             fetchPosts({ session })
         }
-    }, [session])
+    }, [session, post])
     
 
     async function fetchPosts({ session }) {
