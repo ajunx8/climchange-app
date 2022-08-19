@@ -21,12 +21,14 @@ function CoordinatesForm({ fetchData, setWeatherModalOpen }) {
                 value={latitude}
                 onChange={(e) => setLatitude(e.target.value)}
                 placeholder="Latitude"
+                required
             />
             <TextField
                 type="number"
                 value={longitude}
                 onChange={(e) => setLongitude(e.target.value)}
                 placeholder="Longitude"
+                required
             />
             <Button type="submit" variant="contained">Get Weather</Button>
         </form>

@@ -28,7 +28,7 @@ function WeatherSearch() {
     };
 
     return (
-        <div>
+        <div className="weatherSearch">
             <Button variant="contained" onClick={getWeatherAtCurrentLocation}>Search Current Location.</Button>
             <Typography>or enter coordinates manually:</Typography>
             <CoordinatesForm fetchData={fetchData} setWeatherModalOpen={setWeatherModalOpen} />
