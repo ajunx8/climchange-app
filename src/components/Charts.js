@@ -133,7 +133,7 @@ class Charts extends Component {
                 <LineChart width={930} height={250} data={temp}
                     margin={{ top: 10, right: 30, left: 20, bottom: 10 }}>
                     <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                    <XAxis dataKey="year" label="Year-Month" />
+                    <XAxis dataKey="year" label="Global Monthly Mean Surface Temperature Change" />
                     <YAxis dataKey="station" type="number" domain={[0, 'dataMax + 5']} >
                         <Label value="temp change (Celcius)" offset={5} position="left" angle={-90} />
                     </YAxis>
@@ -146,7 +146,7 @@ class Charts extends Component {
                     margin={{ top: 10, right: 30, left: 20, bottom: 10 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year" >
-                        <Label value="Year-Month" offset={-5} position="insideBottom" />
+                    <Label value="Methane Levels" offset={-5} position="insideBottom" />
                     </XAxis>
                     <YAxis datakey="average" type="number" domain={['dataMin - 5', 'dataMax + 5']} >
                         <Label value="Part Per million (ppm)" offset={-5} position="insideleft" angle={-90} />
@@ -160,7 +160,7 @@ class Charts extends Component {
                     margin={{ top: 10, right: 30, left: 20, bottom: 10 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" >
-                        <Label value="Year-Month" offset={-5} position="insideBottom" />
+                        <Label value="amount of carbon dioxide (CO2) in the atmosphere from 2012 to present." offset={-5} position="insideBottom" />
                     </XAxis>
                     <YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} >
                         <Label value="Part Per million (ppm)" offset={-5} position="insideleft" angle={-90} />
@@ -182,7 +182,9 @@ class Charts extends Component {
                             <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                         </linearGradient>
                     </defs>
-                    <XAxis dataKey="year" />
+                    <XAxis dataKey="year" >
+                        <Label value="Polar Ice Area and Extent" offset={-5} position="insideBottom" />
+                    </XAxis>
                     <YAxis label="Million square km" />
                     <CartesianGrid strokeDasharray="3 3" />
                     <Tooltip />
@@ -193,7 +195,9 @@ class Charts extends Component {
                 <LineChart width={930} height={250} data={nitrousOxide}
                     margin={{ top: 10, right: 30, left: 20, bottom: 10 }}>
                     <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                    <XAxis dataKey="year" interval={10} label="Year-Month" />
+                    <XAxis dataKey="year" interval={10} label="Year-Month" >
+                        <Label value="Nitrogen Dioxide Levels (ppb)" offset={-5} position="insideBottom" />
+                    </XAxis>
                     <YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} >
                         <Label value="NO2 mole fraction(ppb)" offset={5} position="left" angle={-90} />
                     </YAxis>
