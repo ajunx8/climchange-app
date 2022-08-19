@@ -1,0 +1,8 @@
+.weatherSearch {
+    border: 4px solid black;
+    width: 25%;
+    margin: 0 auto;
+    margin-top: 5em;
+    padding: 2em;
+    text-align: left;
+}

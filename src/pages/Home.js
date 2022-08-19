@@ -8,7 +8,9 @@ function Home() {
       <div className="headerContainer">
         <h1> CLIMATE CHANGE NOW </h1>
         <h2> The Causes of Climate Change. </h2>
+      </div>
 
+      <div className="blurb">
         <ul>
               <li>The greenhouse effect is essential to life on Earth, but human-made emissions in the atmosphere are trapping and slowing heat loss to space.</li>
               <li>Five key greenhouse gases are CO2, nitrous oxide, methane, chlorofluorocarbons, and water vapor.                                            </li>
